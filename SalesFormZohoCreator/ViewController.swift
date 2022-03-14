@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         return stack
     }()
     
-    let emiField: UITextField = {
+    let imeField: UITextField = {
         let text = UITextField()
         text.placeholder = " IME NUMBER"
         text.backgroundColor = .white
@@ -150,7 +150,7 @@ class ViewController: UIViewController {
 //        }
         
         view.addSubview(contentView)
-        contentView.addArrangedSubview(emiField)
+        contentView.addArrangedSubview(imeField)
         contentView.addArrangedSubview(mobileBrand)
         contentView.addArrangedSubview(mobileModel)
         contentView.addArrangedSubview(price)
@@ -167,7 +167,7 @@ class ViewController: UIViewController {
             make.centerY.equalToSuperview().offset(15)
         }
        
-        emiField.snp.makeConstraints { make in
+        imeField.snp.makeConstraints { make in
             make.height.equalTo(35)
             make.width.equalTo(contentView).offset(-10)
         }
@@ -212,7 +212,7 @@ class ViewController: UIViewController {
     
     @objc func submitHandler(_ sender: UIButton){
         
-        guard let emi = emiField.text, let brand = mobileBrand.text, let model = mobileModel.text, let price = price.text, let employee = employee.text, let date = date.text else { return }
+        guard let emi = imeField.text, let brand = mobileBrand.text, let model = mobileModel.text, let price = price.text, let employee = employee.text, let date = date.text else { return }
         
        
         let sale1 = Sale(IME: emi, Saled_Date: date, Employee: employee, Mobile_Model: model, Mobile_Brand: brand, Price: price)
@@ -241,6 +241,10 @@ class ViewController: UIViewController {
                     if let data = data {
                         print("Success")
                         print(String(data: data, encoding: .utf8)!)
+                        DispatchQueue.main.async {
+                            self.clearFields()
+                        }
+                        
                     }
                     
                     }
@@ -254,10 +258,16 @@ class ViewController: UIViewController {
             print("error while encoding json")
         }
 
-        
-        
-        
     }
 
+    func clearFields(){
+        imeField.text = nil
+        mobileBrand.text = nil
+        mobileModel.text = nil
+        price.text = nil
+        employee.text = nil
+        date.text = nil
+    }
+    
 }
 
