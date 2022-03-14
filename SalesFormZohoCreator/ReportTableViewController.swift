@@ -91,5 +91,14 @@ class ReportTableViewController: UITableViewController {
             task.resume()
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vc = DetailViewController()
+        vc.salesReport = salesReport
+        vc.index = indexPath
+        navigationController?.pushViewController(vc, animated: true)
+    }
   
 }
