@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     let contentView: UIStackView = {
         let stack = UIStackView()
-        stack.backgroundColor = .white
+        stack.backgroundColor = .red
         stack.axis = .vertical
         stack.spacing = 2
         stack.alignment = .center
